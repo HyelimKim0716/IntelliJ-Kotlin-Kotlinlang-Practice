@@ -22,33 +22,6 @@ fun main(args: Array<String>) {
     MyClass.create()
     MySecondClass.Companion.create()
     MySecondClass.create()
-
-    println(LazyTest().noticedLate)
-    println(LazyTest().noticedLate)
-    println(LazyTest().noticedLate)
-    println(LazyTest().noticedLate)
-
-    LazyTest1()
-    LazyTest2()
-}
-
-class LazyTest {
-    val noticedLate: String by lazy(LazyThreadSafetyMode.PUBLICATION) {
-        println("notice late!")
-        "noticedLate"
-    }
-}
-
-class LazyTest1 {
-    init {
-        println(LazyTest().noticedLate)
-    }
-}
-
-class LazyTest2 {
-    init {
-        println(LazyTest().noticedLate)
-    }
 }
 
 fun countClicks(window: JComponent) {

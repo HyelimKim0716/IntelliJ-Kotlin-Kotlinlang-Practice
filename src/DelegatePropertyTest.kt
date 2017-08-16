@@ -21,6 +21,14 @@ fun main(args: Array<String>) {
 
     e.p = "NEW"
 
+    println(LazyTest().noticedLate)
+    println(LazyTest().noticedLate)
+    println(LazyTest().noticedLate)
+    println(LazyTest().noticedLate)
+
+    LazyTest1()
+    LazyTest2()
+
     val user = User()
     user.name = "first"
     user.name = "second"
@@ -36,6 +44,26 @@ fun main(args: Array<String>) {
     val y: Any? = null
 //    val x: String? = y as String
 }
+
+class LazyTest {
+    val noticedLate: String by lazy(LazyThreadSafetyMode.PUBLICATION) {
+        println("notice late!")
+        "noticedLate"
+    }
+}
+
+class LazyTest1 {
+    init {
+        println(LazyTest().noticedLate)
+    }
+}
+
+class LazyTest2 {
+    init {
+        println(LazyTest().noticedLate)
+    }
+}
+
 
 class User {
     var name: String by Delegates.observable("<no name>") {
